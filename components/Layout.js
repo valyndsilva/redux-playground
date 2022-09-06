@@ -1,5 +1,4 @@
 import Head from "next/head";
-import { Header, Footer } from "./";
 
 const Layout = ({ children }) => {
   return (
@@ -10,9 +9,7 @@ const Layout = ({ children }) => {
         <meta name="description" content="title goes here" />
       </Head>
       <div className="min-h-screen flex flex-col  ">
-        <Header />
         <main className="flex-grow ">{children}</main>
-        <Footer />
       </div>
     </>
   );

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import { IoMdArrowDropdown } from "react-icons/io";
-function Header() {
+function Header({ name }) {
   return (
     <div className="w-full h-12 border-b-2 border-b-gray-200">
       <div className="h-full py-0 px-5 flex items-center justify-between">
@@ -31,7 +31,7 @@ function Header() {
             />
           </div>
           <span className="my-0 mx-2 font-medium text-xl cursor-pointer">
-            John
+            {name}
           </span>
           <IoMdArrowDropdown className="cursor-pointer" />
         </div>

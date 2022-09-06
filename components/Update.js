@@ -1,10 +1,8 @@
 import Image from "next/image";
-import React, { useState } from "react";
+import React from "react";
 import Warning from "./Warning";
 
 function Update() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
   return (
     <div className="flex-[6]">
       <div className="p-5">
@@ -18,14 +16,14 @@ function Update() {
             <div className="flex flex-col mb-3">
               <label>Profile Picture</label>
               <div className="mt-2 flex items-center">
-              <div className="relative h-8 w-8">
-                <Image
-                  className="rounded-full"
-                  src="https://images.pexels.com/photos/3024627/pexels-photo-3024627.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-                  alt=""
-                  layout="fill"
-                  objectFit="cover"
-                />
+                <div className="relative h-8 w-8">
+                  <Image
+                    className="rounded-full"
+                    src="https://images.pexels.com/photos/3024627/pexels-photo-3024627.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+                    alt=""
+                    layout="fill"
+                    objectFit="cover"
+                  />
                 </div>
                 <span className="ml-2 font-medium text-md text-teal-600">
                   Change
@@ -50,7 +48,10 @@ function Update() {
             </div>
             <div className="flex flex-col mb-2">
               <label>Password</label>
-              <input className="w-[40%] p-2 mt-1 border rounded-md" type="password" />
+              <input
+                className="w-[40%] p-2 mt-1 border rounded-md"
+                type="password"
+              />
             </div>
             <button className="mt-2 borer-none py-1 px-3 bg-teal-500 text-white rounded-lg cursor-pointer font-medium :disabled:cursor-notallowed :disabled:bg-teal-200">
               Update
