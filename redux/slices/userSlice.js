@@ -123,8 +123,5 @@ export const userSlice = createSlice({
   },
 });
 
-// Export actions and reducers:
-export const { updatePending, updateFulfilled, updateRejected } =
-  userSlice.actions;
-
+// Export reducer:
 export default userSlice.reducer;

@@ -704,8 +704,8 @@ node index.js
 
 Backend server should start running.
 
-
 ## Handle Redux Async Functions using Custom Reducers:
+
 Now we see how to handle Async Functions inside Redux:
 Remove the reducers from the redux/slices/userSlice.js and update the initialState.
 
@@ -919,6 +919,7 @@ To test the error message, in redux/apiCalls.js edit the axios link and submit t
 ```
 
 ## Handle Redux Async Functions using createAsyncThunk:
+
 Now we see how to handle Async Functions inside Redux using createAsyncThunk function:
 Remove the reducers from the redux/slices/userSlice.js and update the initialState.
 
@@ -972,10 +973,7 @@ export const userSlice = createSlice({
   },
 });
 
-// Export actions and reducers:
-export const { updatePending, updateFulfilled, updateRejected } =
-  userSlice.actions;
-
+// Export reducer:
 export default userSlice.reducer;
 
 ```
@@ -1021,7 +1019,6 @@ function Update() {
 
   return (
 ```
-
 
 Now if you enter the details the button is disbaled for 2 seconds and then updated and you should see the success message and you should see the actions in the Redux Dev console.
 
