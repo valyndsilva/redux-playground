@@ -1,7 +1,11 @@
 import Image from "next/image";
 import React from "react";
 import { IoMdArrowDropdown } from "react-icons/io";
-function Header({ name }) {
+import { useSelector } from "react-redux";
+function Header() {
+  // const name = useSelector(state => state.user.name)
+  // When using Custom Redux Reducers:
+  const name = useSelector(state => state.user.userInfo.name)
   return (
     <div className="w-full h-12 border-b-2 border-b-gray-200">
       <div className="h-full py-0 px-5 flex items-center justify-between">

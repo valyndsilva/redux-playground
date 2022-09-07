@@ -7,6 +7,9 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.5",
+    "axios": "^0.27.2",
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
     "next": "latest",
     "next-themes": "^0.2.0",
     "react": "18.1.0",

@@ -1,17 +1,50 @@
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import Warning from "./Warning";
+import { useDispatch, useSelector } from "react-redux";
+import { addHelloToName, remove, update } from "../redux/slices/userSlice";
+// import { updateUser } from "../redux/apiCalls"; // 1st method: Using custom reducer
+import { updateUser } from "../redux/slices/userSlice"; // 2nd method: Using createAsyncThunk redux function
 
 function Update() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  console.log(name, email);
+  // const user = useSelector((state) => state.user);
+  // When using Custom Redux Reducers:
+  // const user = useSelector((state) => state.user.userInfo);
+  // When using Custom Reducers we can destructure the user
+  const { userInfo, pending, error } = useSelector((state) => state.user);
+
+  const dispatch = useDispatch();
+
+  const handleUpdate = (e) => {
+    e.preventDefault();
+    // dispatch(update({ name, email }));
+    // dispatch(addHelloToName({ name, email }));
+
+    // 1st method: Using custom reducers we use updateUser from the apiCalls:
+    // updateUser({ name, email }, dispatch);
+    // 2nd method : Using createAsyncThunk redux function:
+    dispatch(updateUser({ name, email }));
+  };
+  const handleDelete = (e) => {
+    e.preventDefault();
+    // dispatch(remove());
+  };
+
   return (
     <div className="flex-[6]">
       <div className="p-5">
         <h3 className="text-2xl mb-5 font-normal">Update Your Account</h3>
         <Warning />
-        <button className="border-none py-1 px-3 text-sm bg-red-400 text-white font-medium mt-3 rounded-lg cursor-pointer">
+        <button
+          className="border-none py-1 px-3 text-sm bg-red-400 text-white font-medium mt-3 rounded-lg cursor-pointer"
+          onClick={handleDelete}
+        >
           Delete Account
         </button>
-        <div className="flex mt-5 border-t-2 border-t-gray-200 pt-2">
+        <div className="flex flex-col mt-5 border-t-2 border-t-gray-200 pt-2">
           <form className="flex-1">
             <div className="flex flex-col mb-3">
               <label>Profile Picture</label>
@@ -35,7 +68,9 @@ function Update() {
               <input
                 className="w-[40%] p-2 mt-1 border rounded-md"
                 type="text"
-                placeholder="John"
+                // placeholder={user.name}
+                placeholder={userInfo.name}
+                onChange={(e) => setName(e.target.value)}
               />
             </div>
             <div className="flex flex-col mb-2">
@@ -43,7 +78,9 @@ function Update() {
               <input
                 className="w-[40%] p-2 mt-1 border rounded-md"
                 type="text"
-                placeholder="john@gmail.com"
+                // placeholder={user.email}
+                placeholder={userInfo.email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div className="flex flex-col mb-2">
@@ -53,11 +90,24 @@ function Update() {
                 type="password"
               />
             </div>
-            <button className="mt-2 borer-none py-1 px-3 bg-teal-500 text-white rounded-lg cursor-pointer font-medium :disabled:cursor-notallowed :disabled:bg-teal-200">
+            <button
+              className="mt-2 borer-none py-1 px-3 bg-teal-500 text-white rounded-lg cursor-pointer font-medium disabled:cursor-not-allowed disabled:bg-teal-200"
+              disabled={pending}
+              onClick={handleUpdate}
+            >
               Update
             </button>
           </form>
-          {/* <span className="text-green-500 text-md ml-5">Successful</span> */}
+          {error && (
+            <span className="text-red-500 text-md mt-5 bg-red-100 p-3 rounded-lg w-52">
+              Something went wrong!
+            </span>
+          )}
+          {pending === false && (
+            <span className="text-gree-500 text-md mt-5 bg-green-100 p-3 rounded-lg w-60">
+              Account has been updated!
+            </span>
+          )}
         </div>
       </div>
     </div>

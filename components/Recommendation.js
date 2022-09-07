@@ -1,12 +1,16 @@
 import Image from "next/image";
 import React from "react";
+import { useSelector } from "react-redux";
 
 function Recommendation({ type }) {
+  // const name = useSelector(state => state.user.name)
+  // When using Custom Redux Reducers:
+  const name = useSelector(state => state.user.userInfo.name)
   const title =
     type === "user"
-      ? "Recommended for John"
+      ? "Recommended for " + name
       : type === "popular"
-      ? "Popular on Lama App"
+      ? "Popular on Redux App"
       : "Editor's choice";
 
   const img =
